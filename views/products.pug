@@ -22,16 +22,16 @@ block content
                                     a(href=`?cat=${cat}`)= `${cat}`
             .col.span-3-of-4.mobile-100
                 -if(typeof(category) != "undefined")
-                    h2.main__h2= `${category}`
-                        span.h2__inline-content Orden: 
+                    h2.main__h2.prods-title= `${category}`
+                        span.h2__inline-content.prods-span-cat Orden: 
                             select.products__select--js
                                 option(value="rel" selected) Relevancia
                                 option(value="discount") Descuento
                                 option(value="asc") Precio Asc.
                                 option(value="dec") Precio Dec.
                 -else
-                    h2.main__h2 Todos nuestros Productos
-                        span.h2__inline-content Orden: 
+                    h2.main__h2.prods-title Todos nuestros Productos
+                        span.h2__inline-content.prods-span-cat Orden: 
                             select.products__select--js
                                 option(value="rel" selected) Relevancia
                                 option(value="discount") Descuento

@@ -519,6 +519,8 @@ if (searchFrontProdForm) {
 }
 
 if (productsSelect) {
+	console.log("1");
+
 	if (sort) {
 		productsSelect.value = sort;
 	}
@@ -540,6 +542,7 @@ if (productsSelect) {
 		window.location.href = newURL;
 	});
 }
+
 if (paginateLeft) {
 	if (page == 1 || !page) {
 		paginateLeft.disabled = true;
