@@ -4,7 +4,7 @@
 	"description": "Jewlery proyect",
 	"main": "app.js",
 	"scripts": {
-		"start": "server.js",
+		"start": "node server.js",
 		"dev": "nodemon server.js",
 		"start:prod": "NODE_ENV=production nodemon server.js",
 		"watch:js": "parcel watch ./public/resources/js/index.js --out-dir ./public/resources/js --out-file bundle.js",
