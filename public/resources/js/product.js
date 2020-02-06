@@ -4,7 +4,7 @@ import axios from "axios";
     - Create item request -
 -------------------------------------------------*/
 export const createProduct = async data => {
-	// console.log(data);
+	console.log(data);
 	try {
 		const res = await axios({
 			method: "POST",
@@ -13,7 +13,7 @@ export const createProduct = async data => {
 		});
 		location.assign("/admin/products");
 
-		// console.log(res);
+		console.log(res);
 	} catch (err) {
 		console.log(err);
 	}
