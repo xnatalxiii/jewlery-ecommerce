@@ -1,0 +1,164 @@
+@media only screen and (max-width: 1023px) {
+	html {
+		font-size: 59.5%;
+	}
+
+	.header__main-nav {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	html {
+		font-size: 56.5%;
+	}
+	.account .span-1-of-4,
+	.contact .span-1-of-4 {
+		width: 15.8%;
+	}
+	.account .span-2-of-4,
+	.contact .span-2-of-4 {
+		width: 65%;
+	}
+
+	.mobile-100 {
+		width: 100%;
+	}
+
+	.mobile-50 {
+		width: 45%;
+		float: left;
+	}
+
+	.mobile-50 img {
+	}
+	.mobile-50 .mobile-90 {
+		width: 90%;
+		float: left;
+		margin-left: 1rem;
+		text-align: left;
+	}
+	.header__h1 {
+		margin-left: 1rem;
+		font-size: 2rem;
+		font-weight: 500;
+		color: black;
+		letter-spacing: 0.6rem;
+		word-spacing: 0.4rem;
+	}
+	.header__logo {
+		height: 4rem;
+	}
+
+	.main {
+		margin-top: 8rem;
+	}
+	.only-mobile {
+		display: block;
+	}
+
+	.only-web {
+		display: none;
+	}
+
+	.header__main-nav .only-web {
+		display: none;
+	}
+
+	.mobile__nav--js {
+		display: none;
+	}
+
+	.mobile-nav-icon {
+		display: inline-block;
+	}
+
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background: white;
+		color: black;
+		box-shadow: 0 2px 2px #efefef;
+		z-index: 9999;
+		transition: 0.3s;
+		text-align: center;
+	}
+
+	.header__main-nav {
+		margin: 0;
+	}
+
+	.header__main-nav li {
+		display: block;
+		text-align: center;
+	}
+
+	.header__main-nav li a:link,
+	.header__main-nav li a:visited {
+		padding: 12px 0;
+		display: block;
+		border: none;
+		font-size: 80%;
+	}
+
+	.prod-list__prod--24 {
+		width: 31%;
+		margin: 0 0.5% 4rem 0.5%;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	html {
+		font-size: 54.5%;
+	}
+
+	.header__h1 {
+		font-size: 1.7rem;
+		font-weight: 500;
+		color: black;
+		letter-spacing: 0.5rem;
+		word-spacing: 0.4rem;
+		margin-top: 1.4rem;
+	}
+
+	.header__logo {
+		height: 3rem;
+		margin-top: 1.6rem;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	html {
+		font-size: 52.5%;
+	}
+
+	.prod-list__prod--24 {
+		width: 48%;
+		margin: 0 0.5% 4rem 0.5%;
+	}
+
+	.mobile-50 {
+		width: 98%;
+	}
+
+	.account .span-2-of-4,
+	.contact .span-2-of-4 {
+		width: 98%;
+	}
+
+	.header__h1 {
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: black;
+		letter-spacing: 0.2rem;
+		word-spacing: 0.2rem;
+	}
+}
+
+@media only screen and (max-width: 365px) {
+	.header__h1 {
+		display: none;
+	}
+}

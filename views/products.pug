@@ -1,0 +1,67 @@
+extends base
+block content
+
+    main.main
+        - let i = 0
+        .row.row-max
+            .col.span-1-of-4.mobile-100
+                    h2.main__h2 Categorías
+                    ul.side-bar__categories
+                        -if(typeof(category) != "undefined")
+                            li 
+                                a(href=`/products`)= `Todos`
+                        -else
+                            li.active
+                                a(href=`/products`)= `Todos`
+                        each cat in categories
+                            -if(cat === category )
+                                li.active
+                                    a(href=`?cat=${cat}`)= `${cat}`
+                            -else
+                                li
+                                    a(href=`?cat=${cat}`)= `${cat}`
+            .col.span-3-of-4.mobile-100
+                -if(typeof(category) != "undefined")
+                    h2.main__h2= `${category}`
+                        span.h2__inline-content Orden: 
+                            select.products__select--js
+                                option(value="rel" selected) Relevancia
+                                option(value="discount") Descuento
+                                option(value="asc") Precio Asc.
+                                option(value="dec") Precio Dec.
+                -else
+                    h2.main__h2 Todos nuestros Productos
+                        span.h2__inline-content Orden: 
+                            select.products__select--js
+                                option(value="rel" selected) Relevancia
+                                option(value="discount") Descuento
+                                option(value="asc") Precio Asc.
+                                option(value="dec") Precio Dec.
+
+                form.form__front-prod-find--js
+                    div.preview-list__item
+                        label(for='search') Buscar:
+                        input.preview-list__search(id=`search` type="text" placeholder="Producto")
+                        button.btn.btn--gray.btn-small.btn-inline Buscar
+
+                -if (products.length === 0)
+                    div.row.row-max.margin-top.margin-bottom
+                        h2 No hay productos que cumplan los criterios de búsqueda.
+                -else
+                    ul.prod-list
+                        each prod in products
+                            li.prod-list__prod.prod-list__prod--33
+                                a(href=`/products/${prod.slug}`)
+                                    if prod.discount > 0
+                                        .prod__discount= `${prod.discount}%`
+                                    img.prod__img(src=`resources/img/products/${prod.img}`, alt="", srcset="")
+                                    h4.prod__name= prod.name
+                                    if prod.discount > 0
+                                        div.prod__normal-price=` $${prod.price} `  
+                                    span.prod__price= `$${prod.finalPrice}`
+                        br
+                        button.btn.btn--gray.btn--paginate#paginate-left
+                            i.icon.ion-ios-arrow-dropleft.pagination-icon
+                        span#current-page
+                        button.btn.btn--gray.btn--paginate#paginate-right(data-maxpage=`${maxpage}`)
+                            i.icon.ion-ios-arrow-dropright.pagination-icon

@@ -1,0 +1,106 @@
+extends ./../base
+
+block content
+
+    main.main
+        div.row-max
+            h2.main__h2
+                span=`Carrito `
+                    i.icon.ion-ios-cart.cart-icon
+                span=` ( ${user.cart.length} )`
+
+            -if (user.cart.length > 0) 
+                ul.preview-list
+
+                -let i = 0;
+                -total = 0;
+                each prod in user.cart
+                    -total += (prod.product.finalPrice*prod.quantity);
+                        div.row.preview-list__item
+                            .col.span-1-of-5.mobile-50
+                                a(href=`/products/${prod.product.slug}`)
+                                    img(src=`/resources/img/products/${prod.product.img}`)
+                            .mobile-50
+                                .col.span-1-of-5.mobile-90.mobile-90
+                                    li
+                                        label(for=`name${i}`) Producto:
+                                        a(href=`/products/${prod.product.slug}`).link= `${prod.product.name}`
+                                    li
+                                        label(for=`description${i}`) Descripcion:
+                                        span= `${prod.product.description}`
+                                    li
+                                        label(for=`category${i}`) Categoría:
+                                        span= `${prod.product.category}`
+                                .col.span-1-of-5.mobile-90
+                                    if prod.product.discount > 0
+                                        li
+                                            label(for=`price${i}`) Price Normal:
+                                            span= `${prod.product.price}`
+                                        li
+                                            label(for=`discount${i}`) Descuento:
+                                            span=`${prod.product.discount} %`
+                                    li
+                                        label Precio:
+                                        span= `$${prod.product.finalPrice}`
+                                .col.span-1-of-5.mobile-90
+                                    li
+                                        label(for=`prod__quantity${i}`) Cantidad:
+                                        input(id=`prod__quantity${i}--js` min="0" type="number" disabled  value= `${prod.quantity}`).product-input-quantity
+
+                                .col.span-1-of-5.mobile-90.total-price
+                                    li
+                                        label Precio Total:
+                                        span= `$${(prod.product.finalPrice*prod.quantity).toFixed(2)}`
+                        -i++;                    
+                div.row
+                    .col.span-4-of-5
+                    .col.span-1-of-5.total-price-total
+                        label Envío:
+                        span= `Incluido`
+                        br
+                        br
+                        label Total:
+                        span= `$${total.toFixed(2)}`
+
+            -if (user.cart.length === 0)
+                 div.row.row-max.margin-top.margin-bottom
+                    h2 Aún no cuentas con productos en tu carrito!
+                    h2 Primero debes de agregar productos para poder realizar tu pedido.
+
+            -if (user.cart.length > 0) 
+                div.row
+                    .col.span-1-of-5
+                    .col.span-3-of-5
+                        form.form.form__order--js(data-total=`${total.toFixed(2)}`)
+
+                            h2.main__h2= `Dirección de envío `
+                            .form__group
+                                label Envíos disponibles únicamente dentro de la Repúlica Mexicana.
+                            div.row
+                                .form__group.margin-bottom
+                                        label.form__label(for="order__recipient") Destinatario:
+                                        input.form__input(id="order__recipient" type="text" required placeholder="Tyrone C. González")
+                            div.row
+                                .col.span-1-of-2
+                                    .form__group
+                                        label.form__label(for="order__state") Estado:
+                                        input.form__input(id="order__state" type="text" required)
+                                    .form__group
+                                        label.form__label(for="order__city") Municipio:
+                                        input.form__input(id="order__city" type="text" required)
+                                    .form__group
+                                        label.form__label(for="order__pc") Codigo Postal:
+                                        input.form__input(id="order__pc" type="text" required)
+                                .col.span-1-of-2
+                                    .form__group
+                                        label.form__label(for="order__sub") Colonia:
+                                        input.form__input(id="order__sub" type="text" required)
+                                    .form__group
+                                        label.form__label(for="order__street") Calle y número:
+                                        input.form__input(id="order__street" type="text" required)
+                                    .form__group
+                                        label.form__label(for="order__contact") Contacto (tel):
+                                        input.form__input(id="order__contact" type="text" required)
+                            div.center-text
+                                button.btn.btn--pink.btn-cart#submit-to-disable--js Realizar Pedido
+

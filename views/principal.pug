@@ -1,0 +1,46 @@
+extends base
+block content
+
+    main.main
+        .row-max
+            img.principal-banner(src=`resources/img/principal_banner.jpeg`, alt="")
+            if user
+                if user.type==='admin'
+                    form.form__update-banner--js
+                        .row.preview-list__item
+                            .col.span-2-of-5
+                            .col.span-1-of-5
+                                label(for='banner_img') Banner:
+                                input(id='banner_img' type="file" accept="image/*" name="banner_img")
+                                button.btn.btn--gray.btn-small Actualizar
+            h2.main__h2 Productos en OFERTA
+            ul.prod-list
+            each prod in productsDisc
+                 
+                li.prod-list__prod.prod-list__prod--24
+                    a(href=`/products/${prod.slug}`)
+                        if prod.discount > 0
+                            .prod__discount= `${prod.discount}%`
+                        img.prod__img(src=`resources/img/products/${prod.img}`, alt="", srcset="")
+                        h4.prod__name= prod.name
+                        if prod.discount > 0
+                            div.prod__normal-price=` $${prod.price} `  
+                        span.prod__price= `$${prod.finalPrice}`
+            .row
+            button.btn.btn--pink.btn-see-more.nav-button--js(data-link="/products?sort=discount") Más Descuentos
+
+            h2.main__h2 Productos Destacados
+            ul.prod-list
+            each prod in productsNew
+                 
+                li.prod-list__prod.prod-list__prod--24
+                    a(href=`/products/${prod.slug}`)
+                        if prod.discount > 0
+                            .prod__discount= `${prod.discount}%`
+                        img.prod__img(src=`resources/img/products/${prod.img}`, alt="", srcset="")
+                        h4.prod__name= prod.name
+                        if prod.discount > 0
+                            div.prod__normal-price=` $${prod.price} `  
+                        span.prod__price= `$${prod.finalPrice}`
+            .row
+            button.btn.btn--pink.btn-see-more.nav-button--js(data-link="/products") Todos los productos

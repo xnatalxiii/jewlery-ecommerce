@@ -1,0 +1,52 @@
+extends ./../base
+
+block content
+
+    main.main
+        div.row-max
+            h2.main__h2= `Admin - Users ( ${users.length} )`
+            ul.preview-list
+                form.form__user-find--js
+                    li.preview-list__item
+                        label(for='search') Buscar:
+                        input.preview-list__search(id=`search` type="text" placeholder="Nombre, email, tipo")
+                        button.btn.btn--gray.btn-small.btn-inline Buscar
+            each user in users
+                .row.preview-list__item
+                    .col.span-1-of-3.mobile-50
+                        li
+                            label Nombre:
+                            span= `${user.name}`
+                        li
+                            label Email:
+                            span= `${user.email}`
+                        li
+                            label Tipo:
+                            span= `${user.type}`
+                        li
+                            label ID:
+                            span= `${user.id}`
+
+                
+                        li.margin-bottom
+                            label Cart:
+                            span= `${user.cart.length}`
+                            if user.cart.length > 0
+                                each prod in user.cart
+                                    if(prod.product)
+                                        li
+                                            label Prod:
+                                            span= `${prod.product.name} - ( ${prod.quantity} )` 
+                        button.btn.btn--gray.btn-small.user__delete-btn--js(data-id=`${user.id}`).margin-bottom eliminar Usuario
+                        
+                    .col.span-2-of-3.mobile-50
+                        li
+                            label Orders:
+                            span= `${user.orders.length}`
+                            if user.orders.length > 0
+                                each order in user.orders
+                                    li
+                                        label Orden:
+                                        span= `F${order.folio} - ${order.formatedDate} - $${order.total} - ( ${order.status} )` 
+                                
+

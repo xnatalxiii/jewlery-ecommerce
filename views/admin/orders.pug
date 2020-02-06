@@ -1,0 +1,71 @@
+extends ./../base
+
+block content
+
+    main.main
+        div.row-max
+            h2.main__h2= `Pedidos ( ${orders.length} )`
+            ul.preview-list
+                form.form__orders-find--js
+                    li.preview-list__item
+                        label(for='search') Buscar:
+                        input.preview-list__search(id=`search` type="text" placeholder="Folio, fecha o estado")
+                        button.btn.btn--gray.btn-small.btn-inline Buscar
+            -let i = 0;
+                each order in orders
+                    .row
+                        h2.main__h2= ` - Pedido: ${order.folio}`
+                            span.h2__inline-content Orden: 
+                                select.select__order-update--js(data-order_id=`${order.id}`)
+                                    option(value=`${order.status}` selected hidden)= `${order.status}`
+                                    each status in statuses
+                                        option(value=`${status}`)=`${status}`
+                    each prod in order.cart
+                            div.row.preview-list__item.preview-list__item--borderless
+                                .col.span-1-of-5.mobile-50
+                                    img(src=`/resources/img/products/${prod.product.img}`)
+                                .mobile-50
+                                    .col.span-1-of-5.mobile-90
+                                        li
+                                            label(for=`name${i}`) Producto:
+                                            span= `${prod.product.name}`
+                                        li
+                                            label(for=`category${i}`) Categoría:
+                                            span= `${prod.product.category}`
+                                    .col.span-1-of-5.mobile-90
+                                            label Precio:
+                                            span= `$${prod.product.finalPrice}`
+                                    .col.span-1-of-5.mobile-90
+                                        li
+                                            label(for=`prod__quantity${i}`) Cantidad:
+                                            span= `${prod.quantity}`
+
+                                    .col.span-1-of-5.mobile-90.total-price
+                                        li
+                                            label Precio Total:
+                                            span= `$${prod.product.finalPrice*prod.quantity}`
+                        
+                    div.row.preview-list__item.preview-list__item--address
+                        .col.span-1-of-5
+                            li
+                                span= `- Fecha: ${order.formatedDate}`
+                            if order.user
+                                li
+                                    span= `- User: ${order.user.name}`
+                                li
+                                    span= `- Email: ${order.user.email}`
+                        .col.span-2-of-5
+                            li
+                                span= `- Destinatario: ${order.recipient}`
+                            li
+                                span= `- Dirección de envío: ${order.address}`
+                            li
+                                span= `- Contacto: ${order.contact}`
+                        .col.span-1-of-5.status__container
+                                li
+                                    button.btn.btn--gray.btn-small.order__delete-btn--js(data-id=`${order.id}`) Eliminar
+                        .col.span-1-of-5.total-price.total-price-total
+                            li
+                                label Total:
+                                span= ` $${order.total}`
+                    -i++;

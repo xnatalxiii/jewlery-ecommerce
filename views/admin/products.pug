@@ -1,0 +1,88 @@
+extends ./../base
+
+block content
+
+    main.main
+        div.row-max
+            h2.main__h2= `Admin - Productos ( ${products.length} )`
+            ul.preview-list
+                form.form__prod-create--js
+                    div.row.preview-list__item
+                        .col.span-1-of-5
+
+                        .col.span-1-of-5
+                            li
+                                label(for='name_create') Nombre:
+                                input(id='name_create' type="text" required)
+                            li
+                                label(for='description_create') Descripcion:
+                                input(id='description_create' type="text" required)
+                        .col.span-1-of-5
+                            li
+                                label(for='img_create') Img:
+                                input(id='img_create' type="file" accept="image/*" name="img_create")
+                            li
+                                label(for='category_create') Category:
+                                select(id='category_create')
+                                    each cat in categories
+                                        option(value=`${cat}`)= `${cat}`
+                        .col.span-1-of-5
+                            li
+                                label(for='price_create') Price:
+                                input(id='price_create' type="number" min=1 required)
+                            li
+                                label(for='discount_create') Discount:
+                                input(id='discount_create' type="number" min=0 required value='0')
+                        .col.span-1-of-5.center-text
+                            button.btn.btn--gray.btn-small Crear
+
+                form.form__prod-find--js
+                    li.preview-list__item
+                        label(for='search') Buscar:
+                        input.preview-list__search(id=`search` type="text" placeholder="Nombre, categoría")
+                        button.btn.btn--gray.btn-small.btn-inline Buscar
+            -let i = 0;
+            each prod in products
+                form.form__prod-update--js(data-prod_id=`${prod.id}` data-form_id=`${i}`)
+                    div.row.preview-list__item
+                        .col.span-1-of-5.mobile-50
+                            img(src=`/resources/img/products/${prod.img}`)
+                        .mobile-50
+                            .col.span-1-of-5.mobile-90
+                                li
+                                    label(for=`name${i}`) Nombre:
+                                    input(id=`name${i}` type="text" value= `${prod.name}`)
+                                li
+                                    label(for=`description${i}`) Descripcion:
+                                    input(id=`description${i}` type="text" value= `${prod.description}`)
+                                li
+                                    label(for=`img${i}`) Img:
+                                    input(id=`img${i}` type="file" accept="image/*" name="img")
+                            .col.span-1-of-5.mobile-90
+                                li
+                                    label(for=`category${i}`) Category:
+                                    //- input(id=`category${i}` type="text" value= `${prod.category}`)
+                                    select(id=`category${i}`)
+                                        option(value= `${prod.category}` selected)= `${prod.category}`
+                                        each cat in categories
+                                            option(value=`${cat}`)= `${cat}`
+                                li
+                                    label(for=`price${i}`) Price:
+                                    input(id=`price${i}` type="number" min=1 required value= `${prod.price}`)
+                                li
+                                    label(for=`discount${i}`) Discount:
+                                    input(id=`discount${i}` type="number" min=0 required value= `${prod.discount}`)
+                            .col.span-1-of-5.mobile-90
+                                li
+                                    label Final Price:
+                                    span.pink-text= `${prod.finalPrice}`
+                                li
+                                    label ID:
+                                    span= `${prod.id}`
+                                li
+                                    .center-text
+                                        button.btn.btn--gray.btn-small.product__delete-btn--js(data-id=`${prod.id}`) eliminar
+                                    .center-text
+                                        button.btn.btn--gray.btn-small Actualizar
+                    -i++;
+

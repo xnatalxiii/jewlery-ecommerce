@@ -1,0 +1,31 @@
+extends ./../base
+
+block content
+
+    main.main
+        div.row-max
+            h2.main__h2= `Contact-us Mensajes ( ${contacts.length} )`
+            ul.preview-list
+                form.form__contact-find--js
+                    li.preview-list__item
+                        label(for='search') Buscar:
+                        input.preview-list__search(id=`search` type="text" placeholder="Nombre, email, fecha")
+                        button.btn.btn--gray.btn-small.btn-inline Buscar
+            each contact in contacts
+                .row.preview-list__item
+                    .col.span-2-of-4
+                            li
+                                label Nombre:
+                                span= `${contact.name}`
+                            li
+                                label Email:
+                                span= `${contact.email}`
+                            li
+                                label Fecha:
+                                span= `${contact.formatedDate}`
+                            li
+                                label Mensaje:
+                                textarea.form__textarea(rows="8" disabled)= `${contact.message}`
+                            button.btn.btn--gray.btn-small.contact__delete-btn--js(data-id=`${contact.id}`) eliminar
+
+                    

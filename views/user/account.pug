@@ -1,0 +1,38 @@
+extends ./../base
+
+block content
+    main.main.account
+        .row.row-max
+            .col.span-1-of-4
+
+            .col.span-2-of-4
+
+                form.form.form__user-data--js
+                    h2.main__h2 Cuenta
+                    .form__group
+                        label.form__label(for='name') Nombre:
+                        input#name.form__input(type='text',value=`${user.name}`, required)
+                    .form__group
+                        label.form__label(for='email') Email:
+                        input#email.form__input(type='email',value=`${user.email}`, required)
+                    .user-msg__container
+
+
+                    div.center-text
+                        button.btn.btn--gray Guardar
+
+                form.form.form__user-password--js.margin-top
+                    h2.main__h2 Seguridad
+                    .form__group
+                        label.form__label(for='password') Contraseña:
+                        input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group
+                        label.form__label(for='newPassword') Nueva contraseña:
+                        input#newPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group
+                        label.form__label(for='newPasswordConfirm') Confirmar nueva contraseña:
+                        input#newPasswordConfirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .user-msg-2__container
+                    div.center-text
+                        button.btn.btn--gray Guardar
+            .col.span-1-of-4

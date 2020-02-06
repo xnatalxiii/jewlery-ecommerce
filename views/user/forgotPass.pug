@@ -1,0 +1,22 @@
+extends ./../base
+
+block content
+    main.main
+        .row.row-max
+            .col.span-1-of-4
+            .col.span-2-of-4
+                form.form.form__forgot-pass--js
+                    h2.main__h2 Olvidaste tu contraseña?
+
+                    ul.instructions-list.style-none
+                        li
+                            p Si olvidaste tu contraseña, ingresa tu correo en el siguiente formato.
+                        li
+                            p A continuación se enviará a tu cuenta un link desde el cual podrás cambiar tu contraseña.
+                    .form__group
+                        label.form__label(for='email') Email:
+                        input#email.form__input(type='email', placeholder='you@example.com', required)
+                    .user-msg__container
+
+                    div.center-text
+                        button.btn.btn--gray Aceptar

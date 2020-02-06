@@ -1,0 +1,38 @@
+extends base
+block content
+
+    main.main.contact
+        .row.row-max
+            .col.span-1-of-4
+            .col.span-2-of-4
+                form.form.form__contact--js
+                    h2.main__h2 Contáctanos
+                    .user-msg__container
+
+                    ul.instructions-list.style-none
+                        li
+                            p Para pedidos especiales, precios al mayoreo, informes, cotizaciones y aclaraciones, puede comunicarse con nosotros 
+                                span al siguiente correo.
+                        li
+                            p Email: 
+                                a(href="mailto:asd@gmail.com") asd@gmail.com
+                        li
+                            p Whatsapp: 
+                                a(href="https://api.whatsapp.com/send?phone=492492492") 492492492
+                                
+                        li 
+                            p También puede hacerlo mediante el siguiente formato.                   
+                    .form__group
+                        label.form__label(for='name') Nombre
+                        input#name.form__input(type='text', placeholder='Jotaro Joestar', required)
+                    .form__group
+                        label.form__label(for='email') Email
+                        input#email.form__input(type='email', placeholder='you@example.com', required)
+                    .form__group
+                        label.form__label(for='message') Mensaje
+                        textarea#message.form__textarea(rows="8" placeholder='Tu mensaje...', required)
+                    #user-msg--error
+                    #user-msg--success
+                    div.center-text
+                        button.btn.btn--pink#submit-to-disable--js Enviar
+                            

@@ -1,0 +1,23 @@
+extends ./../base
+
+block content
+    main.main
+        .row.row-max
+            .col.span-1-of-4
+            .col.span-2-of-4
+                form.form.form__login--js
+                    h2.main__h2 Ingresar a tu cuenta
+                    .form__group
+                        label.form__label(for='email') Email:
+                        input#email.form__input(type='email', placeholder='you@example.com', required)
+                    .form__group
+                        label.form__label(for='password') Contraseña:
+                        input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                        .rigth-align
+                            a(href="/forgotPass").link.link-margin Olvidé mi contraseña
+                    .user-msg__container
+                    div.center-text
+                        button.btn.btn--gray Ingresar
+
+                    div.center-text.margin-top
+                        a.btn.btn--gray(href="/signup") Crear Cuenta

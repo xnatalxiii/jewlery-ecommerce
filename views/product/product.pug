@@ -1,0 +1,52 @@
+extends ./../base
+
+block content
+    main.main
+        div.row.row-max
+            div.col.span-1-of-2.mobile-50
+                div.product-container
+                    img(src=`/resources/img/products/${product.img}`).prod__img
+            div.col.span-1-of-2.mobile-50
+                form#form__add-product--js(data-prod=`${product._id}`)
+                    h2.main__h2= product.name
+                    div.product-detail
+                        label Descripcion:
+                        span= product.description
+                    div.product-detail
+                        label Categoría:
+                        span= product.category
+                    if product.discount > 0
+                        div.product-detail
+                            label Descuento:
+                            span= `${product.discount}%`
+                    div.product-detail
+                        label Precio:
+                            if product.discount > 0
+                                span.prod__normal-price=` $${product.price} `  
+                        span.prod__price= `$${product.finalPrice}`
+                    div.product-detail
+                        label Envío:
+                        span Incluido
+                    div.product-detail
+                        label Unidades:
+                        input#prod-quantity--js(type="number" value=1 min=1 required).product-input-quantity
+                    div.product-detail
+                        label Total:
+                        span#prod-total--js(data-price=`${product.finalPrice}`)= `$${product.finalPrice*1}`
+                    div.product-detail
+                        button.btn.btn--pink#submit-to-disable--js Agregar
+        -if(relatedProducts.length > 0)
+            .row-max
+                h2.main__h2 Productos relacionados
+                ul.prod-list
+                    each prod in relatedProducts
+                        li.prod-list__prod.prod-list__prod--24
+                            a(href=`/products/${prod.slug}`)
+                                if prod.discount > 0
+                                    .prod__discount= `${prod.discount}%`
+                                img.prod__img(src=`/resources/img/products/${prod.img}`, alt="", srcset="")
+                                h4.prod__name= prod.name
+                                if prod.discount > 0
+                                    div.prod__normal-price=` $${prod.price} `  
+                                span.prod__price= `$${prod.finalPrice}`
+                button.btn.btn--pink.btn-see-more.nav-button--js(data-link=`/products?cat=${product.category}`) Ver más

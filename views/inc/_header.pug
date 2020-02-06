@@ -1,0 +1,84 @@
+header.header
+    .row-max
+        .header__container
+            img.header__logo( src="/resources/img/logo.png" alt="logo" )
+            h1.header__h1 E.N. JOYERÍA ARTESANAL
+                
+            a.header__nav-icon.only-mobile.hover-pink#nav-icon--js
+                i.icon.ion-md-menu
+            if user
+                a(href="/cart").header__cart-icon.only-mobile.hover-pink
+                    i.icon.ion-ios-cart
+                    span=` (${user.cart.length})`
+
+  
+            nav.header__main-nav.mobile__nav--js
+                ul
+                    if (currentPage=="principal")
+                        li.active
+                            a(href="/") Principal
+                    else
+                        li
+                            a(href="/") Principal
+
+                    if (currentPage=="products")
+                        li.active
+                            a(href="/products") Productos  
+                    else
+                        li
+                            a(href="/products") Productos  
+
+
+                    if (currentPage=="contact")
+                        li.active
+                            a(href="/contact") Contacto  
+                    else
+                        li
+                            a(href="/contact") Contacto   
+                    if !user
+                        if (currentPage=="login")
+                            li.active
+                                a(href="/login") Ingresar
+                        else
+                            li
+                                a(href="/login") Ingresar
+
+                    if user
+                        if (currentPage=="account")
+                            li.active
+                                a(href="/account") Cuenta
+                        else
+                            li
+                                a(href="/account") Cuenta
+                        if (currentPage=="orders")
+                            li.active
+                                a(href="/orders") Pedidos
+                        else
+                            li
+                                a(href="/orders") Pedidos
+                        li
+                            a.logout--js(href="/") Salir
+
+                        if (currentPage=="cart")
+                            li.active.only-web 
+                                a(href="/cart") 
+                                    i.icon.ion-ios-cart.cart-icon
+                                    span=` (${user.cart.length})`
+                        else
+                            li.only-web 
+                                a(href="/cart")
+                                    i.icon.ion-ios-cart.cart-icon
+                                    span=` (${user.cart.length})`
+                    if user
+                        if user.type==='admin'
+                            br
+                            br
+                            br
+                            li
+                                a(href="/admin/users") A-Users
+                            li
+                                a(href="/admin/products") A-Prods
+                            li
+                                a(href="/admin/orders") A-Orders
+                            li
+                                a(href="/admin/contacts") A-Contact
