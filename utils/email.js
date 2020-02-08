@@ -53,10 +53,10 @@ module.exports = class Email {
 	}
 
 	async sendWelcome() {
-		await this.send("welcome", "Bienvenido - E.N. Joyería Artesanal.");
+		await this.send("welcome", "Bienvenido - Joyería Artesanal.");
 	}
 
 	async sendPasswordReset() {
-		await this.send("passwordReset", "Restaurar contraseña - E.N. Joyería Artesanal.");
+		await this.send("passwordReset", "Restaurar contraseña - Joyería Artesanal.");
 	}
 };
