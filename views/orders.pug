@@ -35,7 +35,7 @@ block content
                         each prod in order.cart
                                 div.row.preview-list__item.preview-list__item--borderless
                                     .col.span-1-of-5.mobile-50
-                                        img(src=`/resources/img/products/${prod.product.img}`)
+                                        img(src=`data:image/jpeg;base64, ${prod.product.imgData}`)
                                     .mobile-50
                                         .col.span-1-of-5.mobile-90
                                             li

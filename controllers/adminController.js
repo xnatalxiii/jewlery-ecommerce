@@ -29,9 +29,9 @@ exports.resizeBannerImg = catchAsync(async (req, res, next) => {
 	if (!req.file) return next();
 
 	await sharp(req.file.buffer)
-		.resize(800, 350)
+		.resize(1080, 480)
 		.toFormat("jpeg")
-		.jpeg({ quality: 90 })
+		.jpeg({ quality: 100 })
 		.toFile("public/resources/img/principal_banner.jpeg");
 
 	next();

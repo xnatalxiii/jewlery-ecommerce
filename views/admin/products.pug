@@ -46,7 +46,7 @@ block content
                 form.form__prod-update--js(data-prod_id=`${prod.id}` data-form_id=`${i}`)
                     div.row.preview-list__item
                         .col.span-1-of-5.mobile-50
-                            img(src=`/resources/img/products/${prod.img}`)
+                            img(src=`data:image/jpeg;base64, ${prod.imgData}`)
                         .mobile-50
                             .col.span-1-of-5.mobile-90
                                 li

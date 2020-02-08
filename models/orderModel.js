@@ -31,6 +31,7 @@ const orderSchema = new mongoose.Schema(
 						type: String,
 						default: "prod-3.png"
 					},
+					imgData: Buffer,
 					category: {
 						type: [String]
 					},

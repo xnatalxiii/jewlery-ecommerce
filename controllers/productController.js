@@ -8,20 +8,20 @@ const User = require("./../models/userModel");
 
 const slugify = require("slugify");
 
-const multerStorage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, "public/resources/img/products");
-	},
-	filename: (req, file, cb) => {
-		const ext = file.mimetype.split("/")[1];
-		cb(null, `prod-${Date.now()}.${ext}`);
-	}
-});
+// const multerStorage = multer.diskStorage({
+// 	destination: (req, file, cb) => {
+// 		cb(null, "public/resources/img/products");
+// 	},
+// 	filename: (req, file, cb) => {
+// 		const ext = file.mimetype.split("/")[1];
+// 		cb(null, `prod-${Date.now()}.${ext}`);
+// 	}
+// });
 
 // asi lo guardaen el buffer en req.file.buffer
-// const multerStorage = multer.memoryStorage();
+const multerStorage = multer.memoryStorage();
 
-const multerFilet = (req, file, cb) => {
+const multerFilter = (req, file, cb) => {
 	if (file.mimetype.startsWith("image")) {
 		cb(null, true);
 	} else {
@@ -31,7 +31,7 @@ const multerFilet = (req, file, cb) => {
 
 const upload = multer({
 	storage: multerStorage,
-	fileFilter: multerFilet
+	fileFilter: multerFilter
 });
 
 exports.uploadProductImg = upload.single("img");
@@ -54,6 +54,7 @@ exports.uploadProductImg = upload.single("img");
 	- Create product - 
 --------------------------------------------------*/
 exports.createProduct = catchAsync(async (req, res, next) => {
+	// console.log(req.file.buffer.toString("base64"));
 	const prod = await Product.findOne({ name: req.body.name });
 	if (prod) {
 		// console.log(`-------------------- El producto ya esta registrado ~`.red);
@@ -67,6 +68,8 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 		name: req.body.name,
 		description: req.body.description,
 		img: req.body.img,
+		imgData: req.file.buffer.toString("base64"),
+		imgContentType: "image/jpeg",
 		category: req.body.category,
 		price: req.body.price,
 		discount: req.body.discount
@@ -89,7 +92,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 --------------------------------------------------*/
 exports.getAllProducts = catchAsync(async (req, res, next) => {
 	const products = await Product.find();
-
+	// console.log(products[0].imgData.buffer.toString("base64"));
 	res.status(200).json({
 		status: "success",
 		requestTime: req.requestTime,
@@ -128,7 +131,10 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 		req.body.finalPrice = +(req.body.price - (req.body.price * req.body.discount) / 100).toFixed(2);
 	}
 
-	if (req.file) req.body.img = req.file.filename;
+	if (req.file) {
+		req.body.img = req.file.filename;
+		req.body.imgData = req.file.buffer.toString("base64");
+	}
 
 	const prod = await Product.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
@@ -152,13 +158,12 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 --------------------------------------------------*/
 exports.deleteProduct = catchAsync(async (req, res, next) => {
 	const users = await User.find();
-
 	for (var j = 0; j < users.length; j++) {
 		let cart = users[j].cart;
 		for (var i = 0; i < cart.length; i++) {
 			if (cart[i].product.id == req.params.id) {
 				cart.splice(i, 1);
-				// console.log(users[j].name);
+				console.log(users[j].name);
 				let newUser = await User.findByIdAndUpdate(
 					users[j].id,
 					{ cart },

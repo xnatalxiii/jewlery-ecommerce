@@ -23,7 +23,7 @@ block content
                         div.row.preview-list__item
                             .col.span-1-of-5.mobile-50
                                 a(href=`/products/${prod.product.slug}`)
-                                    img(src=`/resources/img/products/${prod.product.img}`)
+                                    img(src=`data:image/jpeg;base64, ${prod.product.imgData}`)
                             .mobile-50
                                 .col.span-1-of-5.mobile-90
                                     li

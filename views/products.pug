@@ -54,7 +54,7 @@ block content
                                 a(href=`/products/${prod.slug}`)
                                     if prod.discount > 0
                                         .prod__discount= `${prod.discount}%`
-                                    img.prod__img(src=`resources/img/products/${prod.img}`, alt="", srcset="")
+                                    img.prod__img(src=`data:image/jpeg;base64, ${prod.imgData}`)
                                     h4.prod__name= prod.name
                                     if prod.discount > 0
                                         div.prod__normal-price=` $${prod.price} `  

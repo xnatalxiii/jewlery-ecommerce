@@ -252,6 +252,11 @@ a:visited {
 .prod__name {
 	margin-bottom: 0.8rem;
 	transition: 0.5s;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
 }
 
 .prod__normal-price {
@@ -408,7 +413,7 @@ a:visited {
 .principal-banner {
 	/* border: 1px solid red; */
 	margin-bottom: 2rem;
-	width: 100%;
+	width: 80%;
 }
 
 .btn-see-more {

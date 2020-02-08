@@ -5,7 +5,7 @@ block content
         div.row.row-max
             div.col.span-1-of-2.mobile-50
                 div.product-container
-                    img(src=`/resources/img/products/${product.img}`).prod__img
+                    img(src=`data:image/jpeg;base64, ${product.imgData}`).prod__img
             div.col.span-1-of-2.mobile-50
                 form#form__add-product--js(data-prod=`${product._id}`)
                     h2.main__h2= product.name
@@ -44,7 +44,7 @@ block content
                             a(href=`/products/${prod.slug}`)
                                 if prod.discount > 0
                                     .prod__discount= `${prod.discount}%`
-                                img.prod__img(src=`/resources/img/products/${prod.img}`, alt="", srcset="")
+                                img.prod__img(src=`data:image/jpeg;base64, ${prod.imgData}`)
                                 h4.prod__name= prod.name
                                 if prod.discount > 0
                                     div.prod__normal-price=` $${prod.price} `  

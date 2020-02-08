@@ -68,7 +68,6 @@ const paginateRight = document.getElementById("paginate-right");
 const currentPage = document.getElementById("current-page");
 
 const productsSelect = document.querySelector(".products__select--js");
-
 const disableSubmit = () => {
 	submitToDisable.disabled = true;
 };
@@ -203,7 +202,6 @@ if (searchUserForm) {
 if (createForm) {
 	createForm.addEventListener("submit", e => {
 		e.preventDefault();
-
 		const formData = new FormData();
 		formData.append("name", document.getElementById("name_create").value);
 		formData.append("description", document.getElementById("description_create").value);
@@ -215,7 +213,6 @@ if (createForm) {
 		formData.append("category", document.getElementById("category_create").value);
 		formData.append("price", document.getElementById("price_create").value);
 		formData.append("discount", document.getElementById("discount_create").value);
-
 		product.createProduct(formData);
 	});
 }
@@ -519,8 +516,6 @@ if (searchFrontProdForm) {
 }
 
 if (productsSelect) {
-	console.log("1");
-
 	if (sort) {
 		productsSelect.value = sort;
 	}

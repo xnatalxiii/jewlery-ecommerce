@@ -4,7 +4,6 @@ import axios from "axios";
     - Update Banner img -
 -------------------------------------------------*/
 export const updateBanner = async data => {
-	// console.log(data);
 	try {
 		const res = await axios({
 			method: "PATCH",
