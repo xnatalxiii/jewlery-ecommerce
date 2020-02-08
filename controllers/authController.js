@@ -193,13 +193,14 @@ exports.restrictTo = (...roles) => {
 	- logout - 
 --------------------------------------------------*/
 exports.logout = (req, res) => {
-	// console.log(`-------------------- Current user logged out ~`.red);
+	console.log(`-------------------- Current user logged out ~`.red);
+	res.locals.user = undefined;
+
 	res.cookie("jwt", "loggedout", {
 		expires: new Date(Date.now() + 10 * 1000),
 		httpOnly: true
 	});
-	res.locals.user = undefined;
-	return res.redirect("/");
+	res.status(200).json({ status: "success" });
 };
 
 /*-------------------------------------------------- 
