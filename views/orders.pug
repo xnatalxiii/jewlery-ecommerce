@@ -30,7 +30,7 @@ block content
                     each order in orders
                         .row
                             h2.main__h2= ` - Pedido: ${order.folio}  -  Fecha: ${order.formatedDate}`
-                                span.h2__inline-content Estado: 
+                                span.h2__inline-content.prods-span-cat Estado: 
                                     span.pink-text= `${order.status}`
                         each prod in order.cart
                                 div.row.preview-list__item.preview-list__item--borderless

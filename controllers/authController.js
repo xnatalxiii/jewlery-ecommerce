@@ -199,7 +199,7 @@ exports.logout = (req, res) => {
 		httpOnly: true
 	});
 	res.locals.user = undefined;
-	res.status(200).json({ status: "success" });
+	return res.redirect("/");
 };
 
 /*-------------------------------------------------- 
